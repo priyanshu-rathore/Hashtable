@@ -1,10 +1,34 @@
-﻿namespace Hashtable
+﻿using myMapNode;
+
+namespace Hashtable
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            string paragraph = "To be or not to be";
+            CountNumbOfOccurence(paragraph); 
+        }
+
+        public static void CountNumbOfOccurence(string paragraph)
+        {
+            MyMapNode<string, int> hashTabe = new MyMapNode<string, int>(6);
+
+            string[] words = paragraph.Split(' ');
+
+            foreach (string word in words)
+            {
+                if (hashTabe.Exists(word.ToLower()))
+                    hashTabe.Add(word.ToLower(), hashTabe.Get(word.ToLower()) + 1);
+                else
+                    hashTabe.Add(word.ToLower(), 1); //to,1 
+            }
+            Console.WriteLine("Displaying after add operation");
+            hashTabe.Display();
+            //string s = "or";
+            //hashTabe.Remove(s);
+            //Console.WriteLine("After removed an item {0}", s);
+            //hashTabe.Display();
         }
     }
 }
